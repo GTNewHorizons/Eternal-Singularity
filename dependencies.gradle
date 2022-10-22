@@ -1,5 +1,8 @@
 // Add your dependencies here
 
 dependencies {
+    compileOnly("com.github.GTNewHorizons:Avaritia:1.29:dev") {
+        transitive = false
+    }
 
 }
