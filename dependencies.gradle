@@ -4,6 +4,6 @@ dependencies {
     compile ("com.github.GTNewHorizons:Avaritia:1.31:dev")
 	compile ("com.github.GTNewHorizons:Universal-Singularities:8.6.5:dev")
     compile ("com.github.GTNewHorizons:NotEnoughItems:2.3.12-GTNH:dev")
-	compile ("com.github.GTNewHorizons.CraftTweaker:3.2.9:dev")
+	compile ("com.github.GTNewHorizons:CraftTweaker:3.2.9:dev")
 
 }
