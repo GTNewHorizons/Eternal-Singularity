@@ -88,7 +88,7 @@ public class CommonProxy {
                 false,
                 "If this Config Option is Enabled, for Every 9 Singularities Used in the Eternal Singularity Recipe, You will Receive an Additional Eternal Singularity for the Recipe Output.");
         if (config.hasChanged()) config.save();
-        final int compoundMax = (int) Math.ceil((float) singularityCount / 9);
+        final int compoundMax = 16;
         (eternalSingularityRecipe = new ShapelessOreRecipe(new ItemStack(
                         EternalSingularityItem.instance, easyMode ? MathHelper.clamp_int(compoundMax, 1, 64) : 1)))
                 .getInput()
