@@ -5,14 +5,17 @@ package singulariteam.eternalsingularity.render;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
+
 import org.lwjgl.opengl.ARBFragmentShader;
 import org.lwjgl.opengl.ARBShaderObjects;
 import org.lwjgl.opengl.ARBVertexShader;
 import org.lwjgl.opengl.GL11;
 
 public final class ShaderHelper {
+
     private static final int VERT = ARBVertexShader.GL_VERTEX_SHADER_ARB;
     private static final int FRAG = ARBFragmentShader.GL_FRAGMENT_SHADER_ARB;
     private static final String PREFIX = "/assets/eternalsingularity/shader/";
@@ -108,7 +111,8 @@ public final class ShaderHelper {
 
     private static String getLogInfo(int obj) {
         return ARBShaderObjects.glGetInfoLogARB(
-                obj, ARBShaderObjects.glGetObjectParameteriARB(obj, ARBShaderObjects.GL_OBJECT_INFO_LOG_LENGTH_ARB));
+                obj,
+                ARBShaderObjects.glGetObjectParameteriARB(obj, ARBShaderObjects.GL_OBJECT_INFO_LOG_LENGTH_ARB));
     }
 
     private static String readFileAsString(String filename) throws Exception {

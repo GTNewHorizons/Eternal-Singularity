@@ -1,6 +1,7 @@
 package singulariteam.eternalsingularity;
 
 public final class Reference {
+
     public static final String MOD_ID = "eternalsingularity";
     public static final String MOD_NAME = "Eternal Singularity";
     public static final String MOD_VERSION = "GRADLETOKEN_VERSION";

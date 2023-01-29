@@ -1,11 +1,15 @@
 package singulariteam.eternalsingularity;
 
 import java.util.Iterator;
+
 import javax.annotation.Nonnull;
+
 import minetweaker.IUndoableAction;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
+
 import net.minecraft.item.ItemStack;
+
 import singulariteam.eternalsingularity.proxy.CommonProxy;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -13,6 +17,7 @@ import wanion.lib.common.MineTweakerHelper;
 
 @ZenClass("mods.eternalsingularity")
 public final class EternalRecipeTweaker {
+
     private EternalRecipeTweaker() {}
 
     public static void init() {
@@ -32,6 +37,7 @@ public final class EternalRecipeTweaker {
     }
 
     private static class Add implements IUndoableAction {
+
         private final ItemStack itemStack;
 
         public Add(@Nonnull final ItemStack itemStack) {
@@ -70,13 +76,13 @@ public final class EternalRecipeTweaker {
     }
 
     private static class Remove implements IUndoableAction {
+
         private final ItemStack itemStack;
 
         private Remove(@Nonnull final ItemStack itemStackToRemove) {
             ItemStack itemStack = null;
-            for (final Iterator<Object> eternalSingularityRecipeIterator =
-                            CommonProxy.getEternalSingularityRecipe().getInput().iterator();
-                    eternalSingularityRecipeIterator.hasNext() && itemStack == null; ) {
+            for (final Iterator<Object> eternalSingularityRecipeIterator = CommonProxy.getEternalSingularityRecipe()
+                    .getInput().iterator(); eternalSingularityRecipeIterator.hasNext() && itemStack == null;) {
                 final Object input = eternalSingularityRecipeIterator.next();
                 if (input instanceof ItemStack && ((ItemStack) input).isItemEqual(itemStackToRemove))
                     itemStack = (ItemStack) input;

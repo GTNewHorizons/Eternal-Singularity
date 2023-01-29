@@ -1,8 +1,7 @@
 package singulariteam.eternalsingularity.render;
 
-import fox.spiteful.avaritia.render.ICosmicRenderItem;
-import fox.spiteful.avaritia.render.IHaloRenderItem;
 import java.util.Random;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderHelper;
@@ -15,8 +14,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.client.IItemRenderer;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
+
+import fox.spiteful.avaritia.render.ICosmicRenderItem;
+import fox.spiteful.avaritia.render.IHaloRenderItem;
 
 public class EternalItemRenderer implements IItemRenderer {
 
@@ -233,7 +236,14 @@ public class EternalItemRenderer implements IItemRenderer {
             b = (float) (colour & 255) / 255.0F;
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             ItemRenderer.renderItemIn2D(
-                    Tessellator.instance, f1, f2, f, f3, icon.getIconWidth(), icon.getIconHeight(), scale);
+                    Tessellator.instance,
+                    f1,
+                    f2,
+                    f,
+                    f3,
+                    icon.getIconWidth(),
+                    icon.getIconHeight(),
+                    scale);
         }
 
         if (item.getItem() instanceof ICosmicRenderItem) {

@@ -1,12 +1,5 @@
 package singulariteam.eternalsingularity.item;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import fox.spiteful.avaritia.entity.EntityImmortalItem;
-import fox.spiteful.avaritia.items.ItemResource;
-import fox.spiteful.avaritia.items.LudicrousItems;
-import fox.spiteful.avaritia.render.ICosmicRenderItem;
-import fox.spiteful.avaritia.render.IHaloRenderItem;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,9 +8,18 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
 import singulariteam.eternalsingularity.EternalSingularityMod;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import fox.spiteful.avaritia.entity.EntityImmortalItem;
+import fox.spiteful.avaritia.items.ItemResource;
+import fox.spiteful.avaritia.items.LudicrousItems;
+import fox.spiteful.avaritia.render.ICosmicRenderItem;
+import fox.spiteful.avaritia.render.IHaloRenderItem;
 
 public class EternalSingularityItem extends Item implements IHaloRenderItem, ICosmicRenderItem {
+
     public static final EternalSingularityItem instance = new EternalSingularityItem();
 
     private IIcon cosmicMask;

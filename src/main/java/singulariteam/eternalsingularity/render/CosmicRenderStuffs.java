@@ -1,25 +1,30 @@
 package singulariteam.eternalsingularity.render;
 
-import cpw.mods.fml.relauncher.ReflectionHelper;
-import fox.spiteful.avaritia.render.LudicrousRenderEvents;
 import java.lang.reflect.Field;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.world.World;
+
 import org.lwjgl.opengl.ARBShaderObjects;
 
+import cpw.mods.fml.relauncher.ReflectionHelper;
+import fox.spiteful.avaritia.render.LudicrousRenderEvents;
+
 public class CosmicRenderStuffs {
+
     public static final ShaderCallback shaderCallback;
 
     public static float[] lightlevel = new float[3];
 
-    public static String[] lightmapobf = new String[] {"lightmapColors", "field_78504_Q", "U"};
+    public static String[] lightmapobf = new String[] { "lightmapColors", "field_78504_Q", "U" };
     public static boolean inventoryRender = false;
     public static float cosmicOpacity = 1.0f;
 
     static {
         shaderCallback = new ShaderCallback() {
+
             @Override
             public void call(int shader) {
                 Minecraft mc = Minecraft.getMinecraft();
@@ -80,8 +85,7 @@ public class CosmicRenderStuffs {
         int[] map = null;
         try {
             map = (int[]) mapfield.get(Minecraft.getMinecraft().entityRenderer);
-        } catch (Exception e) {
-        }
+        } catch (Exception e) {}
         if (map == null) {
             setLightLevel(1.0f);
             return;

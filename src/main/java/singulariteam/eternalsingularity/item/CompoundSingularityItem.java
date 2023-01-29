@@ -1,12 +1,7 @@
 package singulariteam.eternalsingularity.item;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import fox.spiteful.avaritia.items.ItemResource;
-import fox.spiteful.avaritia.items.LudicrousItems;
-import fox.spiteful.avaritia.render.ICosmicRenderItem;
-import fox.spiteful.avaritia.render.IHaloRenderItem;
 import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,9 +10,17 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+
 import singulariteam.eternalsingularity.EternalSingularityMod;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import fox.spiteful.avaritia.items.ItemResource;
+import fox.spiteful.avaritia.items.LudicrousItems;
+import fox.spiteful.avaritia.render.ICosmicRenderItem;
+import fox.spiteful.avaritia.render.IHaloRenderItem;
 
 public class CompoundSingularityItem extends Item implements IHaloRenderItem, ICosmicRenderItem {
+
     private final int max;
 
     @SideOnly(Side.CLIENT)
@@ -76,8 +79,7 @@ public class CompoundSingularityItem extends Item implements IHaloRenderItem, IC
 
     @Override
     public IIcon getIcon(ItemStack stack, int pass) {
-        return pass == 1
-                ? this.foregroundIcons[stack.getItemDamage() % foregroundIcons.length]
+        return pass == 1 ? this.foregroundIcons[stack.getItemDamage() % foregroundIcons.length]
                 : this.backgroundIcons[stack.getItemDamage() % backgroundIcons.length];
     }
 
