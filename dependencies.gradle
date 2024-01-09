@@ -1,9 +1,9 @@
 // Add your dependencies here
 
 dependencies {
-    implementation("com.github.GTNewHorizons:NotEnoughItems:2.3.43-GTNH:dev")
-    implementation("com.github.GTNewHorizons:Avaritia:1.46:dev")
+    implementation("com.github.GTNewHorizons:NotEnoughItems:2.5.3-GTNH:dev")
+    implementation("com.github.GTNewHorizons:Avaritia:1.48:dev")
     implementation("com.github.GTNewHorizons:Universal-Singularities:8.6.7:dev")
     implementation("com.github.GTNewHorizons:WanionLib:1.8.4:dev")
-    compileOnly("com.github.GTNewHorizons:CraftTweaker:3.2.11:dev") // optional
+    compileOnly("com.github.GTNewHorizons:CraftTweaker:3.2.13:dev") // optional
 }

@@ -4,12 +4,11 @@ import java.util.Iterator;
 
 import javax.annotation.Nonnull;
 
+import net.minecraft.item.ItemStack;
+
 import minetweaker.IUndoableAction;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;
-
-import net.minecraft.item.ItemStack;
-
 import singulariteam.eternalsingularity.proxy.CommonProxy;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;

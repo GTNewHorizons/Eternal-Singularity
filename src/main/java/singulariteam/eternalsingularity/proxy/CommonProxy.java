@@ -13,14 +13,14 @@ import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
-import singulariteam.eternalsingularity.EternalRecipeTweaker;
-import singulariteam.eternalsingularity.EternalSingularityMod;
-import singulariteam.eternalsingularity.item.CompoundSingularityItem;
-import singulariteam.eternalsingularity.item.EternalSingularityItem;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import fox.spiteful.avaritia.crafting.ExtremeCraftingManager;
 import fox.spiteful.avaritia.crafting.Grinder;
+import singulariteam.eternalsingularity.EternalRecipeTweaker;
+import singulariteam.eternalsingularity.EternalSingularityMod;
+import singulariteam.eternalsingularity.item.CompoundSingularityItem;
+import singulariteam.eternalsingularity.item.EternalSingularityItem;
 
 public class CommonProxy {
 

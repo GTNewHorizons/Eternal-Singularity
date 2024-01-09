@@ -9,7 +9,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-import singulariteam.eternalsingularity.EternalSingularityMod;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import fox.spiteful.avaritia.entity.EntityImmortalItem;
@@ -17,6 +16,7 @@ import fox.spiteful.avaritia.items.ItemResource;
 import fox.spiteful.avaritia.items.LudicrousItems;
 import fox.spiteful.avaritia.render.ICosmicRenderItem;
 import fox.spiteful.avaritia.render.IHaloRenderItem;
+import singulariteam.eternalsingularity.EternalSingularityMod;
 
 public class EternalSingularityItem extends Item implements IHaloRenderItem, ICosmicRenderItem {
 
