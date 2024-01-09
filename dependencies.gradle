@@ -5,5 +5,5 @@ dependencies {
     implementation("com.github.GTNewHorizons:Avaritia:1.48:dev")
     implementation("com.github.GTNewHorizons:Universal-Singularities:8.6.7:dev")
     implementation("com.github.GTNewHorizons:WanionLib:1.8.4:dev")
-    compileOnly("com.github.GTNewHorizons:CraftTweaker:3.2.13:dev") // optional
+    compileOnly("com.github.GTNewHorizons:CraftTweaker:3.3.0:dev") // optional
 }

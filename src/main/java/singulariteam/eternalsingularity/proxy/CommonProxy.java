@@ -3,7 +3,11 @@ package singulariteam.eternalsingularity.proxy;
 import static fox.spiteful.avaritia.Config.craftingOnly;
 
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Nonnull;
 

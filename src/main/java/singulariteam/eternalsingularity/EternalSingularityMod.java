@@ -1,6 +1,11 @@
 package singulariteam.eternalsingularity;
 
-import static singulariteam.eternalsingularity.Reference.*;
+import static singulariteam.eternalsingularity.Reference.CLIENT_PROXY;
+import static singulariteam.eternalsingularity.Reference.COMMON_PROXY;
+import static singulariteam.eternalsingularity.Reference.MC_VERSION;
+import static singulariteam.eternalsingularity.Reference.MOD_ID;
+import static singulariteam.eternalsingularity.Reference.MOD_NAME;
+import static singulariteam.eternalsingularity.Reference.MOD_VERSION;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
