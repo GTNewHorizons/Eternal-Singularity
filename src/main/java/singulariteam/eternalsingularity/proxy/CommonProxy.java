@@ -3,7 +3,11 @@ package singulariteam.eternalsingularity.proxy;
 import static fox.spiteful.avaritia.Config.craftingOnly;
 
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Nonnull;
 
@@ -13,14 +17,14 @@ import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
-import singulariteam.eternalsingularity.EternalRecipeTweaker;
-import singulariteam.eternalsingularity.EternalSingularityMod;
-import singulariteam.eternalsingularity.item.CompoundSingularityItem;
-import singulariteam.eternalsingularity.item.EternalSingularityItem;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import fox.spiteful.avaritia.crafting.ExtremeCraftingManager;
 import fox.spiteful.avaritia.crafting.Grinder;
+import singulariteam.eternalsingularity.EternalRecipeTweaker;
+import singulariteam.eternalsingularity.EternalSingularityMod;
+import singulariteam.eternalsingularity.item.CompoundSingularityItem;
+import singulariteam.eternalsingularity.item.EternalSingularityItem;
 
 public class CommonProxy {
 

@@ -1,14 +1,17 @@
 package singulariteam.eternalsingularity;
 
-import static singulariteam.eternalsingularity.Reference.*;
+import static singulariteam.eternalsingularity.Reference.CLIENT_PROXY;
+import static singulariteam.eternalsingularity.Reference.COMMON_PROXY;
+import static singulariteam.eternalsingularity.Reference.MC_VERSION;
+import static singulariteam.eternalsingularity.Reference.MOD_ID;
+import static singulariteam.eternalsingularity.Reference.MOD_NAME;
+import static singulariteam.eternalsingularity.Reference.MOD_VERSION;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
 import org.apache.logging.log4j.Logger;
 
-import singulariteam.eternalsingularity.item.EternalSingularityItem;
-import singulariteam.eternalsingularity.proxy.CommonProxy;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -16,6 +19,8 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import singulariteam.eternalsingularity.item.EternalSingularityItem;
+import singulariteam.eternalsingularity.proxy.CommonProxy;
 
 @Mod(
         modid = MOD_ID,
