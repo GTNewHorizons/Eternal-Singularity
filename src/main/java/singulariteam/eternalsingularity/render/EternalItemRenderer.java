@@ -213,7 +213,6 @@ public class EternalItemRenderer implements IItemRenderer {
         // ItemRenderer.renderItemIn2D(Tessellator.instance, f1, f2, f, f3, icon.getIconWidth(), icon.getIconHeight(),
         // scale);
 
-        float r, g, b;
         IIcon icon;
         float f, f1, f2, f3;
         float scale = 1F / 16F;
@@ -230,10 +229,6 @@ public class EternalItemRenderer implements IItemRenderer {
             f2 = icon.getMinV();
             f3 = icon.getMaxV();
 
-            int colour = item.getItem().getColorFromItemStack(item, i);
-            r = (float) (colour & 255) / 255.0F;
-            g = (float) (colour & 255) / 255.0F;
-            b = (float) (colour & 255) / 255.0F;
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             ItemRenderer.renderItemIn2D(
                     Tessellator.instance,

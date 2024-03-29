@@ -29,7 +29,7 @@ import singulariteam.eternalsingularity.item.EternalSingularityItem;
 public class CommonProxy {
 
     private static ShapelessOreRecipe eternalSingularityRecipe = null;
-    private static final Set<Class> classSet = new HashSet<>();
+    private static final Set<Class<?>> classSet = new HashSet<>();
     protected CompoundSingularityItem compoundSingularityItem = null;
     private File configFile;
 

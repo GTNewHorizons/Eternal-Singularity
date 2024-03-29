@@ -45,9 +45,8 @@ public class CompoundSingularityItem extends Item implements IHaloRenderItem, IC
         return "item.combined.singularity." + MathHelper.clamp_int(getDamage(stack), 0, max);
     }
 
-    @SuppressWarnings("unchecked")
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List list) {
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (int j = 0; j < max; j++) list.add(new ItemStack(item, 1, j));
     }
 
