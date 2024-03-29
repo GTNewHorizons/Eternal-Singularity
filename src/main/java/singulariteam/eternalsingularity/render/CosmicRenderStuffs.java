@@ -83,8 +83,6 @@ public class CosmicRenderStuffs {
             return;
         }
 
-        int coord = world.getLightBrightnessForSkyBlocks(x, y, z, 0);
-
         int[] map = null;
         try {
             map = (int[]) mapfield.get(Minecraft.getMinecraft().entityRenderer);
@@ -93,11 +91,6 @@ public class CosmicRenderStuffs {
             setLightLevel(1.0f);
             return;
         }
-
-        int mx = (coord % 65536) / 16;
-        int my = (coord / 65536) / 16;
-
-        int lightcolour = map[my * 16 + mx];
 
         setLightLevel(1.0F, 1.0F, 1.0F);
     }

@@ -6,16 +6,12 @@
 		"name": "${modName}",
 		"version": "${modVersion}",
 		"mcversion": "${minecraftVersion}",
-		"url": "https://github.com/SinTh0r4s/MyMod",
+		"url": "https://www.curseforge.com/minecraft/mc-mods/eternal-singularity",
 		"updateUrl": "",
-		"authorList": ["SinTho0r4s"],
+		"authorList": ["RCXcrafter", "WanionCane", "Wealthyturtle"],
 		"credits": "",
-		"logoFile": "",
+		"logoFile": "EternalSingularityLogo.png",
 		"screenshots": [],
-		"parent": "",
-		"requiredMods": [],
-		"dependencies": [],
-		"dependants": [],
-		"useDependencyInformation": true
+		"parent": ""
 	}]
 }
