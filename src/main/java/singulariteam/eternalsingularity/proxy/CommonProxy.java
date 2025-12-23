@@ -64,7 +64,10 @@ public class CommonProxy {
     }
 
     public void postInit() {
-        if (classSet.isEmpty() || craftingOnly) return;
+        if (classSet.isEmpty() || craftingOnly) {
+            classSet = null; // Destroy reference
+            return;
+        }
         final List<ItemStack> singularities = new ArrayList<>();
         for (final Iterator<Object> catalystRecipeIterator = Grinder.catalyst.getInput()
                 .iterator(); catalystRecipeIterator.hasNext();) {
@@ -120,6 +123,6 @@ public class CommonProxy {
         ExtremeCraftingManager.getInstance().getRecipeList().add(eternalSingularityRecipe);
         Grinder.catalyst.getInput().add(new ItemStack(EternalSingularityItem.instance));
 
-        classSet = null;
+        classSet = null; // Destroy reference
     }
 }
