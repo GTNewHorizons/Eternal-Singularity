@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -234,7 +235,7 @@ public class EternalItemRenderer implements IItemRenderer {
     public void processLightLevel(ItemRenderType type, ItemStack item, Object... data) {
         switch (type) {
             case ENTITY, EQUIPPED, EQUIPPED_FIRST_PERSON: {
-                EntityLivingBase ent = (EntityLivingBase) (data[1]);
+                Entity ent = (Entity) (data[1]);
                 if (ent != null) {
                     UniversiumShader.getInstance().setLightFromLocation(
                             ent.worldObj,
