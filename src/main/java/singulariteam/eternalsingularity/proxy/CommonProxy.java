@@ -96,7 +96,7 @@ public class CommonProxy {
                 new ItemStack(
                         EternalSingularityItem.instance,
                         easyMode ? MathHelper.clamp_int(compoundMax, 1, 64) : 1))).getInput().addAll(singularities);
-        if (true) {
+        if (useCompoundSingularities) {
             GameRegistry.registerItem(
                     compoundSingularityItem = new CompoundSingularityItem(compoundMax),
                     "combined_singularity");
