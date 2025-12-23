@@ -30,9 +30,6 @@ import singulariteam.eternalsingularity.proxy.CommonProxy;
         dependencies = "required-after:Avaritia;required-after:wanionlib@[1.7.10-1.3,);after:thermsingul;after:universalsingularities;after:aobdsingularities")
 public class EternalSingularityMod {
 
-    @Mod.Instance(MOD_ID)
-    public static EternalSingularityMod instance;
-
     public static Logger logger;
 
     @SidedProxy(serverSide = COMMON_PROXY, clientSide = CLIENT_PROXY)

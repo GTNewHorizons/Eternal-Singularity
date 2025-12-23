@@ -29,7 +29,7 @@ import singulariteam.eternalsingularity.item.EternalSingularityItem;
 public class CommonProxy {
 
     private static ShapelessOreRecipe eternalSingularityRecipe = null;
-    private static final Set<Class<?>> classSet = new HashSet<>();
+    private static Set<Class<?>> classSet = new HashSet<>();
     protected CompoundSingularityItem compoundSingularityItem = null;
     private File configFile;
 
@@ -63,9 +63,11 @@ public class CommonProxy {
         return eternalSingularityRecipe;
     }
 
-    @SuppressWarnings("unchecked")
     public void postInit() {
-        if (classSet.isEmpty() || craftingOnly) return;
+        if (classSet.isEmpty() || craftingOnly) {
+            classSet = null; // Destroy reference
+            return;
+        }
         final List<ItemStack> singularities = new ArrayList<>();
         for (final Iterator<Object> catalystRecipeIterator = Grinder.catalyst.getInput()
                 .iterator(); catalystRecipeIterator.hasNext();) {
@@ -112,7 +114,7 @@ public class CommonProxy {
                     if (!(input instanceof ItemStack)) continue;
                     compoundRecipe.getInput().add(((ItemStack) input).copy());
                 }
-                if (compoundRecipe.getInput().size() > 0) GameRegistry.addRecipe(compoundRecipe);
+                if (!compoundRecipe.getInput().isEmpty()) GameRegistry.addRecipe(compoundRecipe);
             }
             eternalSingularityRecipeInputs.clear();
             for (int i = 0; i < compoundMax; i++)
@@ -120,5 +122,7 @@ public class CommonProxy {
         }
         ExtremeCraftingManager.getInstance().getRecipeList().add(eternalSingularityRecipe);
         Grinder.catalyst.getInput().add(new ItemStack(EternalSingularityItem.instance));
+
+        classSet = null; // Destroy reference
     }
 }
