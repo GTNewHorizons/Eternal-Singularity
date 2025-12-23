@@ -8,8 +8,8 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
@@ -18,16 +18,18 @@ import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import com.gtnewhorizon.gtnhlib.client.renderer.postprocessing.shaders.UniversiumShader;
+import com.gtnewhorizon.gtnhlib.client.renderer.shader.ShaderProgram;
+
 import fox.spiteful.avaritia.render.ICosmicRenderItem;
 import fox.spiteful.avaritia.render.IHaloRenderItem;
 
 public class EternalItemRenderer implements IItemRenderer {
 
-    public Random rand = new Random();
+    public final Random rand = new Random();
 
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-        // return type != ItemRenderType.INVENTORY;
         return true;
     }
 
@@ -45,9 +47,8 @@ public class EternalItemRenderer implements IItemRenderer {
         IIcon halo = null;
         int haloColour = 0;
 
-        net.minecraft.item.Item itype = item.getItem();
-        if (itype instanceof IHaloRenderItem) {
-            IHaloRenderItem ihri = (IHaloRenderItem) itype;
+        Item itype = item.getItem();
+        if (itype instanceof IHaloRenderItem ihri) {
 
             spread = ihri.getHaloSize(item);
             halo = ihri.getHaloTexture(item);
@@ -61,7 +62,6 @@ public class EternalItemRenderer implements IItemRenderer {
         Minecraft mc = Minecraft.getMinecraft();
         Tessellator t = Tessellator.instance;
         this.processLightLevel(type, item, data);
-        // ShaderHelper.useShader(ShaderHelper.testShader, this.shaderCallback);
         switch (type) {
             case ENTITY: {
                 GL11.glPushMatrix();
@@ -69,19 +69,13 @@ public class EternalItemRenderer implements IItemRenderer {
                 if (item.isOnItemFrame()) GL11.glTranslatef(0F, -0.3F, 0.01F);
                 render(item, null);
                 GL11.glPopMatrix();
-
                 break;
             }
-            case EQUIPPED: {
-                render(item, data[1] instanceof EntityPlayer ? (EntityPlayer) data[1] : null);
-                break;
-            }
-            case EQUIPPED_FIRST_PERSON: {
+            case EQUIPPED, EQUIPPED_FIRST_PERSON: {
                 render(item, data[1] instanceof EntityPlayer ? (EntityPlayer) data[1] : null);
                 break;
             }
             case INVENTORY: {
-                GL11.glPushMatrix();
                 GL11.glEnable(GL11.GL_BLEND);
                 GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
                 RenderHelper.enableGUIStandardItemLighting();
@@ -127,28 +121,7 @@ public class EternalItemRenderer implements IItemRenderer {
 
                 r.renderItemIntoGUI(mc.fontRenderer, mc.getTextureManager(), item, 0, 0, true);
 
-                GL11.glEnable(GL11.GL_ALPHA_TEST);
-                GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-                GL11.glEnable(GL11.GL_DEPTH_TEST);
-
-                r.renderWithColor = true;
-
-                GL11.glDisable(GL11.GL_BLEND);
-                GL11.glPopMatrix();
-
-                // middle?
-
-                GL11.glPushMatrix();
-                GL11.glEnable(GL11.GL_BLEND);
-                GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-                RenderHelper.enableGUIStandardItemLighting();
-
-                GL11.glDisable(GL11.GL_ALPHA_TEST);
-                GL11.glDisable(GL11.GL_DEPTH_TEST);
-
-                r.renderItemIntoGUI(mc.fontRenderer, mc.getTextureManager(), item, 0, 0, true);
-
-                if (item.getItem() instanceof ICosmicRenderItem) {
+                if (item.getItem() instanceof ICosmicRenderItem icri) {
                     GL11.glEnable(GL11.GL_BLEND);
                     GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
                     RenderHelper.enableGUIStandardItemLighting();
@@ -156,15 +129,12 @@ public class EternalItemRenderer implements IItemRenderer {
                     GL11.glDisable(GL11.GL_ALPHA_TEST);
                     GL11.glDisable(GL11.GL_DEPTH_TEST);
 
-                    ICosmicRenderItem icri = (ICosmicRenderItem) (item.getItem());
-
-                    CosmicRenderStuffs.cosmicOpacity = icri.getMaskMultiplier(item, null);
-                    CosmicRenderStuffs.inventoryRender = true;
-                    CosmicRenderStuffs.useShader();
+                    final float opacity = icri.getMaskMultiplier(item, mc.thePlayer);
+                    UniversiumShader.getInstance().setCosmicOpacity(opacity).setRenderInInventory().use();
 
                     IIcon cosmicicon = icri.getMaskTexture(item, null);
 
-                    GL11.glColor4d(1, 1, 1, 1);
+                    GL11.glColor4f(1, 1, 1, 1);
 
                     float minu = cosmicicon.getMinU();
                     float maxu = cosmicicon.getMaxU();
@@ -178,8 +148,7 @@ public class EternalItemRenderer implements IItemRenderer {
                     t.addVertexWithUV(16, 0, 0, maxu, minv);
                     t.draw();
 
-                    CosmicRenderStuffs.releaseShader();
-                    CosmicRenderStuffs.inventoryRender = false;
+                    ShaderProgram.unbind();
                 }
 
                 GL11.glEnable(GL11.GL_ALPHA_TEST);
@@ -189,15 +158,11 @@ public class EternalItemRenderer implements IItemRenderer {
                 r.renderWithColor = true;
 
                 GL11.glDisable(GL11.GL_BLEND);
-                GL11.glPopMatrix();
                 break;
             }
             default:
                 break;
         }
-        // ShaderHelper.releaseShader();
-
-        // Lumberjack.log(Level.INFO, light+"");
     }
 
     public void render(ItemStack item, EntityPlayer player) {
@@ -206,23 +171,16 @@ public class EternalItemRenderer implements IItemRenderer {
             passes = item.getItem().getRenderPasses(item.getItemDamage());
         }
 
-        GL11.glPushMatrix();
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GL11.glColor4f(1F, 1F, 1F, 1F);
-        // ItemRenderer.renderItemIn2D(Tessellator.instance, f1, f2, f, f3, icon.getIconWidth(), icon.getIconHeight(),
-        // scale);
 
         IIcon icon;
         float f, f1, f2, f3;
         float scale = 1F / 16F;
 
-        // Lumberjack.log(Level.INFO, "passes: "+passes);
-
         for (int i = 0; i < passes; i++) {
             icon = this.getStackIcon(item, i, player);
-
-            // Lumberjack.log(Level.INFO, "icon "+i+": "+icon);
 
             f = icon.getMinU();
             f1 = icon.getMaxU();
@@ -245,8 +203,8 @@ public class EternalItemRenderer implements IItemRenderer {
             GL11.glDisable(GL11.GL_ALPHA_TEST);
             GL11.glDepthFunc(GL11.GL_EQUAL);
             ICosmicRenderItem icri = (ICosmicRenderItem) (item.getItem());
-            CosmicRenderStuffs.cosmicOpacity = icri.getMaskMultiplier(item, player);
-            CosmicRenderStuffs.useShader();
+            final float opacity = icri.getMaskMultiplier(item, player);
+            UniversiumShader.getInstance().setCosmicOpacity(opacity).use();
 
             IIcon cosmicicon = icri.getMaskTexture(item, player);
 
@@ -263,59 +221,31 @@ public class EternalItemRenderer implements IItemRenderer {
                     cosmicicon.getIconWidth(),
                     cosmicicon.getIconHeight(),
                     scale);
-            CosmicRenderStuffs.releaseShader();
+            ShaderProgram.unbind();
             GL11.glDepthFunc(GL11.GL_LEQUAL);
             GL11.glEnable(GL11.GL_ALPHA_TEST);
         }
 
         GL11.glDisable(GL11.GL_BLEND);
-        GL11.glPopMatrix();
 
         GL11.glColor4f(1F, 1F, 1F, 1F);
     }
 
     public void processLightLevel(ItemRenderType type, ItemStack item, Object... data) {
         switch (type) {
-            case ENTITY: {
-                EntityItem ent = (EntityItem) (data[1]);
-                if (ent != null) {
-                    CosmicRenderStuffs.setLightFromLocation(
-                            ent.worldObj,
-                            MathHelper.floor_double(ent.posX),
-                            MathHelper.floor_double(ent.posY),
-                            MathHelper.floor_double(ent.posZ));
-                }
-                break;
-            }
-            case EQUIPPED: {
+            case ENTITY, EQUIPPED, EQUIPPED_FIRST_PERSON: {
                 EntityLivingBase ent = (EntityLivingBase) (data[1]);
                 if (ent != null) {
-                    CosmicRenderStuffs.setLightFromLocation(
+                    UniversiumShader.getInstance().setLightFromLocation(
                             ent.worldObj,
                             MathHelper.floor_double(ent.posX),
                             MathHelper.floor_double(ent.posY),
                             MathHelper.floor_double(ent.posZ));
                 }
                 break;
-            }
-            case EQUIPPED_FIRST_PERSON: {
-                EntityLivingBase ent = (EntityLivingBase) (data[1]);
-                if (ent != null) {
-                    CosmicRenderStuffs.setLightFromLocation(
-                            ent.worldObj,
-                            MathHelper.floor_double(ent.posX),
-                            MathHelper.floor_double(ent.posY),
-                            MathHelper.floor_double(ent.posZ));
-                }
-                break;
-            }
-            case INVENTORY: {
-                CosmicRenderStuffs.setLightLevel(1.2f);
-                return;
             }
             default: {
-                CosmicRenderStuffs.setLightLevel(1.0f);
-                return;
+                UniversiumShader.getInstance().setLightLevel(1.0f);
             }
         }
     }
