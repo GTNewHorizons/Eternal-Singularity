@@ -27,7 +27,7 @@ import singulariteam.eternalsingularity.proxy.CommonProxy;
         name = MOD_NAME,
         version = MOD_VERSION,
         acceptedMinecraftVersions = MC_VERSION,
-        dependencies = "required-after:Avaritia;required-after:wanionlib@[1.7.10-1.3,);after:thermsingul;after:universalsingularities;after:aobdsingularities")
+        dependencies = "required-after:Avaritia;required-after:wanionlib@[1.7.10-1.3,);after:thermsingul;after:universalsingularities;after:aobdsingularities;required-after:gtnhlib@[0.8.32,)")
 public class EternalSingularityMod {
 
     public static Logger logger;

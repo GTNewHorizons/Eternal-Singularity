@@ -1,7 +1,7 @@
 // Add your dependencies here
 
 dependencies {
-    api("com.github.GTNewHorizons:GTNHLib:0.8.34")
+    api("com.github.GTNewHorizons:GTNHLib:0.8.32")
     implementation("com.github.GTNewHorizons:NotEnoughItems:2.8.44-GTNH:dev")
     implementation("com.github.GTNewHorizons:Avaritia:1.78:dev")
     implementation("com.github.GTNewHorizons:Universal-Singularities:8.12.0:dev")
